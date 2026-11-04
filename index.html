@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumen Store, accessoires à Dakar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#eceee9;--surface:#f8f9f5;--ink:#1f2829;--muted:#556059;--line:#d3d9d0;--accent:#e9a23b;--on-ink:#f4f6f1;
+  color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#121819;--surface:#1b2324;--ink:#e9ede6;--muted:#9aa59d;--line:#2b3536;--accent:#f0b24d;--on-ink:#121819;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#121819;--surface:#1b2324;--ink:#e9ede6;--muted:#9aa59d;--line:#2b3536;--accent:#f0b24d;--on-ink:#121819;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 "Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+h1,h2,h3{font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.logo{font:800 1.25rem "Bricolage Grotesque","Trebuchet MS",sans-serif;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px 3px var(--accent)}
+nav{display:flex;gap:22px}
+nav a{text-decoration:none;color:var(--muted);font-weight:600}
+nav a:hover{color:var(--ink)}
+@media (max-width:640px){nav{display:none}}
+
+.btn{display:inline-block;padding:12px 20px;border-radius:999px;font-weight:600;text-decoration:none;border:1.5px solid var(--ink);background:var(--ink);color:var(--on-ink);line-height:1.2}
+.btn.alt{background:transparent;color:var(--ink)}
+.btn.sm{padding:8px 14px;font-size:.9rem}
+
+.hero{position:relative;overflow:hidden;padding:64px 0 56px}
+.hero::before{content:"";position:absolute;width:340px;height:340px;right:-90px;top:-70px;border-radius:50%;background:radial-gradient(circle at 40% 40%,var(--accent),transparent 68%);opacity:.6}
+.hero .wrap{position:relative}
+.hero h1{font-size:clamp(2.4rem,8vw,4.6rem);font-weight:800;max-width:14ch;letter-spacing:-.02em}
+.hero p{max-width:46ch;color:var(--muted);font-size:1.1rem;margin:20px 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+
+.promises{border-block:1px solid var(--line);background:var(--surface)}
+.promises .wrap{display:grid;gap:8px 32px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));padding-block:18px;color:var(--muted);font-size:.95rem}
+.promises b{color:var(--ink)}
+
+section{padding:56px 0}
+h2{font-size:clamp(1.7rem,5vw,2.4rem);font-weight:800;margin-bottom:8px}
+.lead{color:var(--muted);margin:0 0 28px;max-width:52ch}
+
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.tile{aspect-ratio:4/3;display:grid;place-items:center;font-size:3rem;background:color-mix(in srgb,hsl(var(--h) 55% 58%) 30%,var(--surface))}
+.card .in{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-size:1.05rem;font-weight:600}
+.card p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.4;flex:1}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;flex-wrap:wrap}
+.price{font-weight:600}
+
+.reviews{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+blockquote{margin:0;padding:20px;border-left:4px solid var(--accent);background:var(--surface);border-radius:0 14px 14px 0}
+blockquote p{margin:0 0 10px}
+blockquote cite{color:var(--muted);font-style:normal;font-size:.9rem}
+
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;max-width:560px;counter-reset:s}
+ol.steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start}
+ol.steps li::before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#1f2829;font-weight:800;display:grid;place-items:center}
+
+.contact{background:var(--surface);border-block:1px solid var(--line)}
+.contact dl{display:grid;gap:12px;margin:24px 0;max-width:480px}
+.contact dt{font-weight:600}
+.contact dd{margin:0;color:var(--muted)}
+footer{padding:28px 0;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#haut"><i></i>Lumen Store</a>
+    <nav aria-label="Navigation principale">
+      <a href="#boutique">Boutique</a><a href="#avis">Avis</a><a href="#commander">Commander</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn sm" id="wa-top" href="#contact">WhatsApp</a>
+  </div>
+</header>
+
+<main id="haut">
+  <div class="hero">
+    <div class="wrap">
+      <h1>Des accessoires calmes pour tous les jours.</h1>
+      <p>Sacs, casquettes et petits bijoux choisis à Dakar. Tu commandes par WhatsApp, on te livre chez toi.</p>
+      <div class="cta">
+        <a class="btn" href="#boutique">Voir la boutique</a>
+        <a class="btn alt" id="wa-hero" href="#contact">Écrire sur WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="promises"><div class="wrap">
+    <span><b>Livraison à Dakar</b> en 24 à 48 h</span>
+    <span><b>Paiement</b> à la livraison, Wave ou Orange Money</span>
+    <span><b>Échange possible</b> sous 48 h</span>
+  </div></div>
+
+  <section id="boutique"><div class="wrap">
+    <h2>La boutique</h2>
+    <p class="lead">Touche « Commander » : ton message est déjà écrit, tu n’as plus qu’à l’envoyer.</p>
+    <div class="grid" id="produits"></div>
+  </div></section>
+
+  <section id="avis" style="padding-top:0"><div class="wrap">
+    <h2>Ce que disent les clientes</h2>
+    <p class="lead">Des retours reçus après livraison.</p>
+    <div class="reviews">
+      <blockquote><p>Le sac est solide et la livraison est arrivée le lendemain à Mermoz. Je recommande.</p><cite>Aïssatou, Mermoz</cite></blockquote>
+      <blockquote><p>J’ai commandé en trois messages sur WhatsApp, c’était simple et rapide.</p><cite>Fatou, Yoff</cite></blockquote>
+      <blockquote><p>La casquette est exactement comme sur la photo. Je reviens bientôt.</p><cite>Moussa, Parcelles Assainies</cite></blockquote>
+    </div>
+  </div></section>
+
+  <section id="commander" style="padding-top:0"><div class="wrap">
+    <h2>Comment commander</h2>
+    <p class="lead">Trois étapes, sans créer de compte.</p>
+    <ol class="steps">
+      <li><span>Choisis ton article dans la boutique et touche « Commander ».</span></li>
+      <li><span>Envoie le message sur WhatsApp avec ton nom et ton quartier.</span></li>
+      <li><span>Reçois ta commande à Dakar et paie à la livraison, par Wave ou par Orange Money.</span></li>
+    </ol>
+  </div></section>
+
+  <section id="contact" class="contact"><div class="wrap">
+    <h2>Une question ?</h2>
+    <p class="lead">On répond en général dans l’heure, pendant les horaires d’ouverture.</p>
+    <dl>
+      <div><dt>Horaires</dt><dd>Du lundi au samedi, de 10 h à 19 h</dd></div>
+      <div><dt>Zone de livraison</dt><dd>Dakar et sa banlieue</dd></div>
+      <div><dt>Instagram</dt><dd><a href="https://instagram.com/lumenstore" id="ig">@lumenstore</a></dd></div>
+    </dl>
+    <div class="cta">
+      <a class="btn" id="wa-main" href="#contact">Écrire sur WhatsApp</a>
+      <a class="btn alt" href="https://www.google.com/maps/search/?api=1&amp;query=Dakar" rel="noopener">Voir sur Google Maps</a>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">© 2026 Lumen Store, Dakar. Site de démonstration : produits, prix et avis fictifs.</div></footer>
+
+<script>
+// Pour un vrai client, il suffit de modifier cette partie.
+const BOUTIQUE = { nom: "Lumen Store", whatsapp: "221770000000" };
+const PRODUITS = [
+  { n: "Tote bag en toile", d: "Toile épaisse, poche intérieure zippée.", p: 6500, e: "🛍️", h: 40 },
+  { n: "Sac bandoulière", d: "Compact, réglable, tient l’essentiel.", p: 12000, e: "👜", h: 20 },
+  { n: "Casquette brodée", d: "Taille ajustable, coton léger.", p: 5000, e: "🧢", h: 210 },
+  { n: "Lunettes de soleil", d: "Verres anti-UV, monture fine.", p: 4500, e: "🕶️", h: 270 },
+  { n: "Bracelet en perles", d: "Fait main, plusieurs coloris.", p: 2500, e: "📿", h: 150 },
+  { n: "Porte-cartes", d: "Fin et résistant, 4 emplacements.", p: 7000, e: "💳", h: 330 }
+];
+const wa = (txt) => "https://wa.me/" + BOUTIQUE.whatsapp + "?text=" + encodeURIComponent(txt);
+const fmt = (n) => n.toLocaleString("fr-FR") + " FCFA";
+
+document.getElementById("produits").innerHTML = PRODUITS.map((x) =>
+  '<article class="card"><div class="tile" style="--h:' + x.h + '" aria-hidden="true">' + x.e + '</div>' +
+  '<div class="in"><h3>' + x.n + '</h3><p>' + x.d + '</p>' +
+  '<div class="row"><span class="price">' + fmt(x.p) + '</span>' +
+  '<a class="btn sm" href="' + wa("Bonjour " + BOUTIQUE.nom + ", je voudrais commander : " + x.n + " (" + fmt(x.p) + "). Mon nom : … Mon quartier : …") + '" rel="noopener">Commander</a></div></div></article>'
+).join("");
+
+const general = wa("Bonjour " + BOUTIQUE.nom + ", j’ai une question.");
+["wa-top", "wa-hero", "wa-main"].forEach((id) => { document.getElementById(id).href = general; });
+</script>
+</body>
+</html>
